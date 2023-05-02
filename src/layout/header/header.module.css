@@ -38,6 +38,11 @@ html {
 
   }
 
+  .logo a{
+    text-decoration: none;
+    color: #201d1d;
+  }
+
   .ico{
     display: flex;
     font-family: "Georgia";
@@ -46,17 +51,18 @@ html {
     font-size: 2.2rem;
     line-height: 35px;
     color: #201d1d;
-    gap: 20px;
+    gap: 15px;
     padding-top: 10px;
     cursor: pointer;
   }
  
   .ico-text {
-    font-family: "Roboto";
+    font-family: "Georgia";
     font-style: normal;
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 1.9rem;
     margin-top: -5px;
+    
   }
 
 

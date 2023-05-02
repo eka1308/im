@@ -4,29 +4,6 @@ html {
     font-size: 10px;
   }
 
-.wrapper {
-    max-width: 1280px;
-    margin: auto;
-  }
-  
- 
-  .footer{
-    position: sticky;
-    bottom: 0;
-    background: url('../../img/footer-gradient-background.png')  ;
-    background-size: cover;
-  }
-
-  
-  .content {
-    display: flex;
-    justify-content: space-between;
-    color: #F1CDB3;
-    padding-top: 30px;
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-  
 
   
   .navigation{
@@ -64,29 +41,11 @@ html {
 }
 
 
-.logo{
-  font-family: "Georgia";
-  font-style: normal;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 3.2rem;
-  line-height: 35px;
-  color: #F1CDB3;
-
-}
-
-.cont{
-  color: #FAFAFA;
-  font-family: "Arial";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 160%;
-    padding-top: 5px;
-
-}
-
-
+.active {
+    color: #FAFAFA;
+    border-bottom: 3px solid #F1CDB3;
+  padding-bottom: 3px;
+  }
 
 @media screen and (max-width: 768px) {
    

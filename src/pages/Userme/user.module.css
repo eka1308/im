@@ -1,37 +1,42 @@
 
-
 html {
     font-size: 10px;
+   
   }
+
+
+.wrapper{
+    max-width: 1280px;
+    margin: auto;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    min-height: 77vh;
+    overflow: hidden;
+    
+  }  
   
 .card-img-top {
-
-    width: 220px;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 10px;
+    width: 520px;
+    
+  
    
 }
 
 
 .card {
 
-    width: 220px; 
     display: flex;
-    flex-direction: column;
     justify-content: flex-start;
-    background-color: #FAFAFA;
-    padding-bottom: 15px;
-    border-radius: 10px;
     
 }
 
 
 .card-body{
-    /* width: 220px;  */
+   
     display: flex;
     flex-direction: column;
-    padding-left: 10px;
+    padding-left: 30px;
     padding-right: 10px;
     padding-top: 10px;
 
@@ -41,8 +46,8 @@ html {
     font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 2.0rem;
-    line-height: 2.5rem;
+    font-size: 3.0rem;
+    line-height: 3.8rem;
     position: relative;
 }
 
@@ -50,8 +55,8 @@ html {
     font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 1.4rem;
-    line-height: 2.0rem;
+    font-size: 2.4rem;
+    line-height: 3.3rem;
 }
 
 .wrapper-name {
@@ -66,13 +71,10 @@ html {
     font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 1.7rem;
-    line-height: 2.0rem;
+    font-size: 3.7rem;
+    line-height: 4.2rem;
 }
 
-.card-name:hover {
-    color: #a72d24;
-  }
 
 
 .btn-primary {
@@ -86,6 +88,7 @@ html {
     font-weight: 400;
     font-size: 1.7rem;
     line-height: 2.2rem;
+    margin-right: 20px;
 
 }
 
@@ -97,7 +100,7 @@ html {
 
 
 .btns{
-    width: 220px; 
+    
     display: flex;
     position: relative;
 

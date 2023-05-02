@@ -1,51 +1,59 @@
-import styles from './footer.module.css';
-import img from '../../img/footer-puppy.png';
-import './footer.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDog } from '@fortawesome/free-solid-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import styles from "./footer.module.css";
+import img from "../../img/footer-puppy.png";
+import "./footer.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDog } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { NavLink, useNavigate } from 'react-router-dom'
+import { LinkItem  } from "../../components/linkitem";
 
 export const Footer = () => {
-    return (
-      <footer className={styles['footer']}>
-         <div className={styles['wrapper']}>
-       <div className={styles['footer__content']}>
-         <div className={styles['footer__contacts']}>
-            <div className={styles['logo']}>DogFood <FontAwesomeIcon icon={faDog} /></div> 
-             
-             <div className={styles['contacts']}><FontAwesomeIcon icon={faPhone} /> 8 800 00 00 </div>
-             <div className={styles['contacts']}><FontAwesomeIcon icon={faEnvelope} /> mail@gmail.com </div>
-        </div>
-
-        <div className={styles['footer__navigation']}>
-          <ul className={styles['navigation']}>
-           <li className={styles['navigationlink']}><a href="">Каталог</a></li>
-           <li className={styles['navigationlink']}><a href="">Акции</a></li>
-           <li className={styles['navigationlink']}><a href="">Популярные товары</a></li>
-           
-          </ul>
-        </div>
-        <div className={styles['footer__navigation']}>
-          <ul className={styles['navigation']}>
-           <li className={styles['navigationlink']}><a href="">Новости</a></li>
-           <li className={styles['navigationlink']}><a href="">Отзывы</a></li>
-           <li className={styles['navigationlink']}><a href="">Часто спрашивают</a></li>
-         </ul>
-        </div>
-        <div className={styles['footer__navigation']}>
-          <ul className={styles['navigation']}>
-           <li className={styles['navigationlink']}><a href="" >Оплата и доставка</a></li>
-           <li className={styles['navigationlink']}><a href="">Контакты</a></li>
-            <li className={styles['navigationlink']}><a href="">Обратная связь</a></li>
-          </ul>
-        </div>
-          <div className={styles['footer__img']}>
-            <img src={ img } alt="pets" />
+  const navigate = useNavigate();
+  const links = 
+  [{name: 'Каталог', link:'/products'}, 
+  {name: 'Личный кабинет', link:'/userme'},
+  {name: 'Акции', link:'/actions'}, 
+  {name: 'Популярные товары', link:'/favorites'}, 
+  {name: 'Новости', link:'/news'}, 
+  {name: 'Отзывы', link:'/revews'}, 
+  {name: 'Часто спрашивают', link:'/quest'}, 
+  {name: 'Контакты', link:'/contacts'}, 
+  {name: 'Оплата и доставка', link:'/delivery'}];
+  return (
+    <footer className={styles["footer"]}>
+      <div className={styles["wrapper"]}>
+        <div className={styles["content"]}>
+          <div className={styles["contacts"]}>
+            <div className={styles["logo"]}>
+              DogFood <FontAwesomeIcon icon={faDog} />
+            </div>
+            <div className={styles["cont"]}>
+              <FontAwesomeIcon icon={faPhone} /> 8 800 00 00{" "}
+            </div>
+            <div className={styles["cont"]}>
+              <FontAwesomeIcon icon={faEnvelope} /> mail@gmail.com{" "}
+            </div>
           </div>
+
+         
+            <ul className={styles["navigation"]}>
+
+             {links.map((link, index) => {
+                return <LinkItem
+                key={index}
+                link={link}
+                index={index}
+                  />
+                })}
+            </ul>
+            
           
+          <div className={styles["footer__img"]}>
+            <img src={img} alt="pets" />
+          </div>
         </div>
-     </div>
-      </footer>
-    )
-  }
+      </div>
+    </footer>
+  );
+};
