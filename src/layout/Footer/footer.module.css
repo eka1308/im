@@ -9,10 +9,7 @@ html {
     margin: auto;
   }
   
-
-
-
-  
+ 
   .footer{
     position: sticky;
     bottom: 0;
@@ -21,8 +18,7 @@ html {
   }
 
   
-  
-  .footer__content {
+  .content {
     display: flex;
     justify-content: space-between;
     color: #F1CDB3;
@@ -31,18 +27,22 @@ html {
     padding-right: 40px;
   }
   
+
   
   .navigation{
-
     display: flex;
-    gap: 5px;
-    font-family: "Arial";
+    justify-content: space-between;
+    /* gap: 2px; */
+    font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
     line-height: 160%;
     flex-direction: column;  
     padding-top: 12px;
+    max-height: 90px;
+    flex-wrap: wrap;
+    min-width: 50%;
   }
 
 .navigationlink{
@@ -67,7 +67,6 @@ html {
 .logo{
   font-family: "Georgia";
   font-style: normal;
-  font-style: normal;
   font-weight: 400;
   font-size: 3.2rem;
   line-height: 35px;
@@ -75,10 +74,9 @@ html {
 
 }
 
-.contacts{
+.cont{
   color: #FAFAFA;
-  font-family: "Arial";
-    font-style: normal;
+
     font-weight: 400;
     font-size: 15px;
     line-height: 160%;
@@ -88,12 +86,9 @@ html {
 
 
 
-
-
-
 @media screen and (max-width: 768px) {
    
-  .footer__content {
+  .content {
     flex-direction: column;  
     gap: 10px;
   }
@@ -101,7 +96,19 @@ html {
   .footer{
     position: static;
   }
-
+  
+  
+  .navigation{
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    font-size: 15px;
+    line-height: 160%;
+    flex-direction: column;  
+    padding-top: 12px;
+    max-height: 115px;
+    flex-wrap: nowrap;
+  }
 
   .navigationlink{
     list-style: none;
