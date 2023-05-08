@@ -1,46 +1,43 @@
 import styles from "./cardlist.module.css";
 import "./cardlist.module.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { CardItem } from "../CardItem";
 import { TOKEN } from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "react-query"
+import { productsFetch } from "../../api/products"
 
 export const CardList = () => {
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
+  
+  const token = localStorage.getItem(TOKEN);
 
   useEffect(() => {
-    const token = localStorage.getItem(TOKEN);
     if (!token) navigate("/signin");
-  }, [navigate]);
+  }, [navigate, token]);
 
-  useEffect(() => {
-    const token = localStorage.getItem(TOKEN);
-    const fetchDataProducts = async () => {
-      const res = await fetch("https://api.react-learning.ru/products", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ['getAllProducts'],
+    queryFn: async () => {
+      const res = await productsFetch(token)
+      const responce = await res.json()
 
-      if (res.ok) {
-        const responce = await res.json();
-        setProducts(responce.products);
-      } else {
-        const responce = await res.json();
-        console.log(responce.message);
-      }
-    };
-    fetchDataProducts();
-  }, []);
+      return responce;
+    }
+    // initialData: []
+    // enabled: !!token
+  })
 
+  if (isLoading) return <p>Идет загрузка:</p>
 
+  if (isError) return <p>Произошла ошибка: {error}</p>
+ 
 
   return (
     <>
-      <div className={styles["total"]}> Всего товаров: {products.length} </div>
+      <div className={styles["total"]}> Всего товаров: {data.total} </div>
       <div className={styles["cardlist"]}>
-        {products.map((product) => {
+        {data.products.map((product) => {
           return <CardItem key={product["_id"]} product={product} />;
         })}
       </div>

@@ -7,11 +7,13 @@ import { TOKEN } from "../../utils/constants";
 import { GROUP } from "../../utils/constants";
 import { NAME } from "../../utils/constants";
 import * as Yup from 'yup';
+import { useMutation } from 'react-query';
 import { useState } from 'react';
 
 export const SignIn = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(false);
+  
 
   useEffect(() => {
     const token = localStorage.getItem(TOKEN);
@@ -23,18 +25,27 @@ export const SignIn = () => {
     password: "",
   };
 
-  const onSubmit = async (values, actions) => {
-    const res = await signInFetch(values);
-    const responce = await res.json();
-    if (res.ok) {
-      
+  const { mutateAsync } = useMutation({
+    mutationFn: async (values) => {
+      const res = await signInFetch(values)
+      const responce = await res.json()
+      return responce
+    }
+  })
+
+
+  const onSubmit = async (values) => {
+    const responce = await mutateAsync(values)
+  
+    if (!responce.err) {
       localStorage.setItem(TOKEN, responce.token);
       localStorage.setItem(GROUP, responce.data.group);
       localStorage.setItem(NAME, responce.data.name);
       return navigate("/products");
-    }
-
-    return setError(responce.message)
+    } else {
+      return setError(responce.message)
+    
+  }
   };
 
   const signInSchema = Yup.object().shape({
@@ -45,7 +56,7 @@ export const SignIn = () => {
   return (
     <div className={styles["wrapper"]}>
       <div>Sign In</div>
-      <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={signInSchema}>
+      <Formik initialValues={initialValues} onSubmit={(values) => onSubmit(values)} validationSchema={signInSchema}>
         <Form className={styles["form"]}>
           <label htmlFor="email">Email</label>
           <Field
@@ -68,7 +79,6 @@ export const SignIn = () => {
           <button type="submit" className={styles["btn-primary"]}>
             Войти
           </button>
-
           {error && <p className={styles.error}>{error}</p>}
 
         </Form>

@@ -4,6 +4,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from 'react-query';
 import './index.css';
 import App from './App';
 import { CurrentProduct} from './components/CurrentProduct';
@@ -44,20 +45,17 @@ const router = createBrowserRouter([
       },
     ]
   },
-  // {
-  //   path: "/",
-  //   element: <Home /> ,
-  // }, 
-  // {
-  //   path: "/products/:idOfProducts",
-  //   element: <CurrentProduct />,
-  // }, 
+
 ]);
+
+const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
      <RouterProvider router={router} />
+     </QueryClientProvider>
   </React.StrictMode>
 );
 

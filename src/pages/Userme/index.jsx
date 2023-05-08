@@ -1,58 +1,45 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { usermeFetch } from "../../api/user";
 import styles from './user.module.css';
-
+import { useQuery } from "react-query";
 import { TOKEN } from "../../utils/constants"
 import { GROUP } from "../../utils/constants"
 
 export const Userme = () => {
   const navigate = useNavigate();
-  const [userme, setUserme] = useState({});
+  const token = localStorage.getItem(TOKEN);
+  const group = localStorage.getItem(GROUP);
 
   useEffect(() => {
-    const token = localStorage.getItem(TOKEN)
     if (!token) navigate('/signin')
-  }, [navigate]);
+  }, [navigate, token]);
 
-  useEffect(() => {
-        const token = localStorage.getItem(TOKEN)
-        const group = localStorage.getItem(GROUP)
-        console.log(group)
-        const fetchUserme = async () => {
-        const res = await usermeFetch(token, group)
-    
-     
-          if (res.ok) {
-            const responce = await res.json();
-            console.log(responce);
-            setUserme(responce);
-            
-            
-          } else {
-            const responce = await res.json();
-            console.log(responce.message);
-          }
-    
-          
-        }
-        fetchUserme()
-      }, []) 
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ['getUserMe'],
+    queryFn: async () => {
+      const res = await usermeFetch(token, group);
+      const responce = await res.json()
+      return responce;
+    }
+   
+  })
 
+  if (isLoading) return <p>Идет загрузка...</p>
+
+  if (isError) return <p>Произошла ошибка: {error}</p>
  
-
-
   return (
     <div className={styles['wrapper']}>
          
       
       <div className={styles['card']} >
-             <img src={userme.avatar} className={styles['card-img-top']}  alt={ userme.name }  />
+             <img src={data.avatar} className={styles['card-img-top']}  alt={ data.name }  />
              <div className={styles['card-body']} >
-             <h2 className={styles['card-name']} >{ userme.name }</h2>
-              <div className={styles['card-price']} >{userme.about}  </div>
-              <div className={styles['card-wight']} >{userme.email} </div>
-              <div className={styles['card-wight']} >{userme.group} </div>
+             <h2 className={styles['card-name']} >{ data.name }</h2>
+              <div className={styles['card-price']} >{data.about}  </div>
+              <div className={styles['card-wight']} >{data.email} </div>
+              <div className={styles['card-wight']} >{data.group} </div>
               <div className={styles['wrapper-name']} ></div>
                
               <div className={styles['btns']} >

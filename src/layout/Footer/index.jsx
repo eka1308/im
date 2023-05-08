@@ -8,18 +8,20 @@ import { faPhone } from "@fortawesome/free-solid-svg-icons";
 // import { NavLink, useNavigate } from 'react-router-dom'
 import { LinkItem  } from "../../components/LinkItem";
 
+const links = 
+[{name: 'Каталог', link:'/products'}, 
+{name: 'Личный кабинет', link:'/userme'},
+{name: 'Акции', link:'/actions'}, 
+{name: 'Популярные товары', link:'/favorites'}, 
+{name: 'Новости', link:'/news'}, 
+{name: 'Отзывы', link:'/revews'}, 
+{name: 'Часто спрашивают', link:'/quest'}, 
+{name: 'Контакты', link:'/contacts'}, 
+{name: 'Оплата и доставка', link:'/delivery'}];
+
 export const Footer = () => {
   // const navigate = useNavigate(); это на будущее, еще добавятся ссылки
-  const links = 
-  [{name: 'Каталог', link:'/products'}, 
-  {name: 'Личный кабинет', link:'/userme'},
-  {name: 'Акции', link:'/actions'}, 
-  {name: 'Популярные товары', link:'/favorites'}, 
-  {name: 'Новости', link:'/news'}, 
-  {name: 'Отзывы', link:'/revews'}, 
-  {name: 'Часто спрашивают', link:'/quest'}, 
-  {name: 'Контакты', link:'/contacts'}, 
-  {name: 'Оплата и доставка', link:'/delivery'}];
+
   return (
     <footer className={styles["footer"]}>
       <div className={styles["wrapper"]}>

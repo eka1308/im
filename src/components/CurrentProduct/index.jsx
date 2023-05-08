@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { currentProductFetch } from "../../api/currentproduct";
 import styles from "./currentproduct.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,31 +11,27 @@ export const CurrentProduct = () => {
   const navigate = useNavigate();
   const params = useParams();
   console.log(params.idOfProducts);
-  const [product, setProduct] = useState({});
+  const token = localStorage.getItem(TOKEN);
 
   useEffect(() => {
-    const token = localStorage.getItem(TOKEN);
+    
     if (!token) navigate("/signin");
-  }, [navigate]);
+  }, [navigate, token]);
 
-  useEffect(() => {
-    const token = localStorage.getItem(TOKEN);
-    const fetchDataProduct = async () => {
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ['getCurrentProduct'],
+    queryFn: async () => {
       const res = await currentProductFetch(token, params.idOfProducts);
+      const responce = await res.json()
+      return responce;
+    }
+    // initialData: []
+    // enabled: !!token
+  })
 
-      if (res.ok) {
-        const responce = await res.json();
-        console.log(responce);
-        setProduct(responce);
-      } else {
-        const responce = await res.json();
-        console.log(responce.message);
-      }
-    };
-    fetchDataProduct();
-  }, [params.idOfProducts]);
+  if (isLoading) return <p>Идет загрузка:</p>
 
-  // эти эксперименты со стилями позже переделаю
+  if (isError) return <p>Произошла ошибка: {error}</p>
 
   const stylePrice = {};
   const styleDiscount = {
@@ -45,7 +42,7 @@ export const CurrentProduct = () => {
     fontWeight: "600",
   };
 
-  if (product.discount > 0) {
+  if (data.discount > 0) {
     stylePrice.color = "#a72d24";
     stylePrice.fontWeight = "600";
   } else {
@@ -56,19 +53,19 @@ export const CurrentProduct = () => {
     <div className={styles["wrapper"]}>
       <div className={styles["card"]}>
         <img
-          src={product.pictures}
+          src={data.pictures}
           className={styles["card-img-top"]}
-          alt={product.name}
+          alt={data.name}
         />
         <div className={styles["card-body"]}>
-          <h2 className={styles["card-name"]}>{product.name}</h2>
+          <h2 className={styles["card-name"]}>{data.name}</h2>
           <div className={styles["card-price"]} style={stylePrice}>
-            {product.price} &#8381;{" "}
+            {data.price} &#8381;{" "}
             <span style={styleDiscount}>
-              <FontAwesomeIcon icon={faTag} /> -{product.discount}%
+              <FontAwesomeIcon icon={faTag} /> -{data.discount}%
             </span>
           </div>
-          <div className={styles["card-wight"]}>{product.wight} </div>
+          <div className={styles["card-wight"]}>{data.wight} </div>
           <div className={styles["wrapper-name"]}></div>
 
           <div className={styles["btns"]}>

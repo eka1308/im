@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { TOKEN } from '../../utils/constants'
 import * as Yup from 'yup';
 import { useState } from 'react';
+import { useMutation } from 'react-query';
 
 
 
@@ -24,15 +25,25 @@ export const SignUp = () => {
     group: ''
   }
  
-  const onSubmit = async (values, actions) => {
-    const res = await signUpFetch(values)
-    const responce = await res.json()
-    if (res.ok) {
-      return navigate('/signin')
+  const { mutateAsync } = useMutation({
+    mutationFn: async (values) => {
+      const res = await signUpFetch(values)
+      const responce = await res.json()
+      return responce
     }
+  })
 
-    return setError(responce.message)
+ 
+ 
+  const onSubmit = async (values) => {
+    const responce = await mutateAsync(values)
+    if (!responce.err) {
+      return navigate('/signin');
+    } else {
+      return setError(responce.message)
+    
   }
+  };
 
 
   const signUpSchema = Yup.object().shape({
@@ -45,7 +56,7 @@ export const SignUp = () => {
       <div>Регистрация</div>
       <Formik
         initialValues={initialValues}
-        onSubmit={onSubmit}
+        onSubmit={(values) => onSubmit(values)}
         validationSchema={signUpSchema}
       >
         <Form className={styles['form']}>
