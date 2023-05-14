@@ -1,0 +1,11 @@
+.form-control{
+    border: 2px solid #F1CDB3;
+    cursor: pointer;
+      border-radius: 10px;
+    font-size: 1.7rem;
+    line-height: 2.2rem;
+    width: 400px;
+    padding: 10px;
+    margin-right: 5px;
+
+  }

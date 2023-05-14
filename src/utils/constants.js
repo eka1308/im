@@ -1,0 +1,5 @@
+export const TOKEN = 'au_token'
+export const GROUP = 'au_group'
+export const NAME = 'au_name'
+export const REDUX_STATE_SUBSCR = 'redux_state_subscr'
+export const PARAM_SEARCH = 'search'
