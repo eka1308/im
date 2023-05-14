@@ -42,6 +42,7 @@ export const Search = () => {
     <input className={styles["form-control"]}
       placeholder="Поиск"
       value={searchValue}
+      type = 'search'
       onChange={(event) => handleChange(event)}
     />
   </>

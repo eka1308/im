@@ -1,12 +1,9 @@
 import styles from "./cardlist.module.css";
 import "./cardlist.module.css";
 import { fetchProductsWithSearch } from "../../api/products";
-import { useEffect } from "react";
 import { CardItem } from "../CardItem";
-import { TOKEN } from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query"
-import { productsFetch } from "../../api/products"
 import { useAuth } from "../../hooks/useAuth"
 import { useSelector } from "react-redux"
 
@@ -34,12 +31,15 @@ export const CardList = () => {
 
   return (
     <>
+     {token && <>
       <div className={styles["total"]}> Всего товаров: {data.length} </div>
       <div className={styles["cardlist"]}>
         {data.map((product) => {
           return <CardItem key={product["_id"]} product={product} />;
         })}
       </div>
+       </>
+       }
     </>
   );
 };
