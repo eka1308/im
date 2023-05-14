@@ -5,15 +5,13 @@ import styles from './user.module.css';
 import { useQuery } from "react-query";
 import { TOKEN } from "../../utils/constants"
 import { GROUP } from "../../utils/constants"
+import { useAuth } from "../../hooks/useAuth"
 
 export const Userme = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem(TOKEN);
+  const { token } = useAuth();
   const group = localStorage.getItem(GROUP);
 
-  useEffect(() => {
-    if (!token) navigate('/signin')
-  }, [navigate, token]);
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['getUserMe'],

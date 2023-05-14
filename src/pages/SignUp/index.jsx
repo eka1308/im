@@ -7,17 +7,18 @@ import { TOKEN } from '../../utils/constants'
 import * as Yup from 'yup';
 import { useState } from 'react';
 import { useMutation } from 'react-query';
-
+import { useSelector } from 'react-redux';
 
 
 export const SignUp = () => {
   const navigate = useNavigate()
   const [error, setError] = useState(false);
+  const { token } = useSelector(state => state.user)
+  
 
   useEffect(() => {
-    const token = localStorage.getItem(TOKEN)
     if (token) navigate('/products')
-  }, [navigate])
+  }, [navigate, token])
 
   const initialValues = {
     email: '',
@@ -33,8 +34,7 @@ export const SignUp = () => {
     }
   })
 
- 
- 
+
   const onSubmit = async (values) => {
     const responce = await mutateAsync(values)
     if (!responce.err) {
@@ -44,7 +44,6 @@ export const SignUp = () => {
     
   }
   };
-
 
   const signUpSchema = Yup.object().shape({
     password: Yup.string().required('Обязательно'),

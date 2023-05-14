@@ -9,16 +9,19 @@ import { NAME } from "../../utils/constants";
 import * as Yup from 'yup';
 import { useMutation } from 'react-query';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUpUser } from '../../redux/slices/userSlice';
 
 export const SignIn = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(false);
+  const dispatch = useDispatch()
+  const { token } = useSelector(state => state.user)
   
 
   useEffect(() => {
-    const token = localStorage.getItem(TOKEN);
-    if (token) navigate("/products");
-  }, [navigate]);
+    if (token) navigate('/products')
+  }, [navigate, token])
 
   const initialValues = {
     email: "",
@@ -38,9 +41,7 @@ export const SignIn = () => {
     const responce = await mutateAsync(values)
   
     if (!responce.err) {
-      localStorage.setItem(TOKEN, responce.token);
-      localStorage.setItem(GROUP, responce.data.group);
-      localStorage.setItem(NAME, responce.data.name);
+      dispatch(setUpUser({ ...responce.data, token: responce.token }))
       return navigate("/products");
     } else {
       return setError(responce.message)

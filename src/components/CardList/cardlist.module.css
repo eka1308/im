@@ -1,11 +1,12 @@
 .cardlist {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 10px;
+    justify-content: start;
+    gap: 30px;
     row-gap: 30px;
-    margin-top: 30px;
-    
+    margin-top: 10px;
+    padding-left: 35px;
+    padding-bottom: 30px;
     
 
 }
@@ -16,12 +17,11 @@
     font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 25px;
-    line-height: 160%;
+    font-size: 16px;
     flex-direction: column; 
     padding-left: 40px;
     padding-right: 40px;
-    padding-top: 30px;
+    padding-top: 10px;
 
 }
 

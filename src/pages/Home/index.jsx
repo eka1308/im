@@ -2,9 +2,10 @@ import styles from './home.module.css';
 import img from '../../img/dog.png';
 import { TOKEN } from "../../utils/constants";
 import { NavLink, useNavigate } from 'react-router-dom'
+import { useSelector } from "react-redux"
 
 export const Home = () => {
-  const token = localStorage.getItem(TOKEN);
+  const { token } = useSelector(state => state.user)
   const navigate = useNavigate()
 
   return (

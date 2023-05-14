@@ -6,17 +6,15 @@ import styles from "./currentproduct.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag } from "@fortawesome/free-solid-svg-icons";
 import { TOKEN } from "../../utils/constants";
+import { useAuth } from "../../hooks/useAuth"
 
 export const CurrentProduct = () => {
   const navigate = useNavigate();
   const params = useParams();
   console.log(params.idOfProducts);
-  const token = localStorage.getItem(TOKEN);
+  const { token } = useAuth();
 
-  useEffect(() => {
-    
-    if (!token) navigate("/signin");
-  }, [navigate, token]);
+
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['getCurrentProduct'],

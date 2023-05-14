@@ -5,6 +5,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 import './index.css';
 import App from './App';
 import { CurrentProduct} from './components/CurrentProduct';
@@ -53,9 +55,11 @@ const queryClient = new QueryClient()
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-     <RouterProvider router={router} />
+    <Provider store={store}>
+     <QueryClientProvider client={queryClient}>
+       <RouterProvider router={router} />
      </QueryClientProvider>
+     </Provider>
   </React.StrictMode>
 );
 

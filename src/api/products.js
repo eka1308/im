@@ -5,3 +5,12 @@ export const productsFetch = (token) => {
     }
   })
 }
+
+
+export const fetchProductsWithSearch = (token, search) =>
+  fetch(`https://api.react-learning.ru/products/search?query=${search}`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
