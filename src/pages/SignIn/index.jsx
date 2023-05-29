@@ -3,11 +3,8 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import { signInFetch } from "../../api/user";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { TOKEN } from "../../utils/constants";
-import { GROUP } from "../../utils/constants";
-import { NAME } from "../../utils/constants";
 import * as Yup from 'yup';
-import { useMutation } from 'react-query';
+import { useMutation } from "@tanstack/react-query";
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUpUser } from '../../redux/slices/userSlice';
@@ -56,7 +53,7 @@ export const SignIn = () => {
 
   return (
     <div className={styles["wrapper"]}>
-      <div>Sign In</div>
+      <div>Авторизация</div>
       <Formik initialValues={initialValues} onSubmit={(values) => onSubmit(values)} validationSchema={signInSchema}>
         <Form className={styles["form"]}>
           <label htmlFor="email">Email</label>

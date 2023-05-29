@@ -14,3 +14,13 @@ export const fetchProductsWithSearch = (token, search) =>
       Authorization: `Bearer ${token}`
     }
   })
+
+
+  export const fetchNewProduct = (token, values) => fetch('https://api.react-learning.ru/products', {
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(values)
+})

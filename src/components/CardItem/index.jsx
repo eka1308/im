@@ -5,24 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faTag } from "@fortawesome/free-solid-svg-icons";
 
-// эту шляпу ниже переделаю чуть позже
 export const CardItem = ({ product }) => {
   const navigate = useNavigate();
-  const stylePrice = {};
-  const styleDiscount = {
-    paddingLeft: "15px",
-    position: "absolute",
-    right: "1px",
-    fontSize: "1.7rem",
-    fontWeight: "600",
-  };
-
-  if (product.discount > 0) {
-    stylePrice.color = "#a72d24";
-    stylePrice.fontWeight = "600";
-  } else {
-    styleDiscount.display = "none";
-  }
+ 
 
   return (
     <div className={styles["card"]}>
@@ -32,12 +17,12 @@ export const CardItem = ({ product }) => {
         alt={product.name}
       />
       <div className={styles["card-body"]}>
-        <div className={styles["card-price"]} style={stylePrice}>
-          {product.price} &#8381;
-          <span style={styleDiscount}>
+        { product.discount > 0 ?  <div className={styles["card-price-discount"]} >{product.price} &#8381;
+          <span className={styles["discount"]}>
             <FontAwesomeIcon icon={faTag} /> -{product.discount}%
           </span>
-        </div>
+        </div> : 
+         <div className={styles["card-price"]}>{product.price} &#8381;</div>}
         <div className={styles["card-wight"]}>{product.wight} </div>
         <div
           className={styles["wrapper-name"]}

@@ -2,13 +2,12 @@ import styles from "./cardlist.module.css";
 import "./cardlist.module.css";
 import { fetchProductsWithSearch } from "../../api/products";
 import { CardItem } from "../CardItem";
-import { useNavigate } from "react-router-dom";
-import { useQuery } from "react-query"
+import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../../hooks/useAuth"
 import { useSelector } from "react-redux"
 
 export const CardList = () => {
-  const navigate = useNavigate();
+
   
   const { token } = useAuth()
   const { search } = useSelector(state => state.filter)
@@ -21,7 +20,8 @@ export const CardList = () => {
 
       return responce;
     },
-    initialData: []
+    initialData: [],
+    enabled: !!token
   })
 
   if (isLoading) return <p>Идет загрузка:</p>
@@ -35,7 +35,7 @@ export const CardList = () => {
       <div className={styles["total"]}> Всего товаров: {data.length} </div>
       <div className={styles["cardlist"]}>
         {data.map((product) => {
-          return <CardItem key={product["_id"]} product={product} />;
+          return <CardItem key={product._id} product={product} />;
         })}
       </div>
        </>

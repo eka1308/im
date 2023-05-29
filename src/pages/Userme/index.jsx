@@ -1,16 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { usermeFetch } from "../../api/user";
 import styles from './user.module.css';
-import { useQuery } from "react-query";
-import { TOKEN } from "../../utils/constants"
-import { GROUP } from "../../utils/constants"
+import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../../hooks/useAuth"
+import { useSelector } from "react-redux"
 
 export const Userme = () => {
-  const navigate = useNavigate();
   const { token } = useAuth();
-  const group = localStorage.getItem(GROUP);
+  const user = useSelector(state => state.user)
+  const group = user.group;
+  const navigate = useNavigate();
+  
 
 
   const { data, isLoading, isError, error } = useQuery({
@@ -26,6 +26,8 @@ export const Userme = () => {
   if (isLoading) return <p>Идет загрузка...</p>
 
   if (isError) return <p>Произошла ошибка: {error}</p>
+
+
  
   return (
     <div className={styles['wrapper']}>

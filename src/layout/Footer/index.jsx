@@ -1,5 +1,5 @@
 import styles from "./footer.module.css";
-import img from "../../img/footer-puppy.png";
+import img from "../../assets/img/footer-puppy.png";
 import "./footer.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDog } from "@fortawesome/free-solid-svg-icons";
@@ -11,11 +11,11 @@ import { LinkItem  } from "../../components/LinkItem";
 const links = 
 [{name: 'Каталог', link:'/products'}, 
 {name: 'Личный кабинет', link:'/userme'},
-{name: 'Акции', link:'/actions'}, 
+{name: 'Регистрация', link:'/signup'}, 
 {name: 'Популярные товары', link:'/favorites'}, 
 {name: 'Новости', link:'/news'}, 
 {name: 'Отзывы', link:'/revews'}, 
-{name: 'Часто спрашивают', link:'/quest'}, 
+{name: 'Часто спрашивают', link:'/questions'}, 
 {name: 'Контакты', link:'/contacts'}, 
 {name: 'Оплата и доставка', link:'/delivery'}];
 

@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { TOKEN } from '../../utils/constants'
 import * as Yup from 'yup';
 import { useState } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation } from "@tanstack/react-query";
 import { useSelector } from 'react-redux';
 
 

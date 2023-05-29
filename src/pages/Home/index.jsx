@@ -1,11 +1,10 @@
 import styles from './home.module.css';
-import img from '../../img/dog.png';
-import { TOKEN } from "../../utils/constants";
+import img from '../../assets/img/dog.png';
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useSelector } from "react-redux"
+import { useAuth } from "../../hooks/useAuth"
 
 export const Home = () => {
-  const { token } = useSelector(state => state.user)
+  const { token } = useAuth()
   const navigate = useNavigate()
 
   return (

@@ -38,6 +38,10 @@
     text-decoration: none;
     color: #201d1d;
   }
+  h1{
+    font-size: 1.2rem;
+    color: #201d1d;
+  }
 
   .ico{
     display: flex;

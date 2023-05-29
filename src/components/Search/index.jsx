@@ -5,8 +5,19 @@ import { useDispatch } from "react-redux";
 import { changeSearchValue } from "../../redux/slices/filterSlice";
 import { useDebounce } from "../../hooks/useDebounce";
 import styles from "./search.module.css";
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export const Search = () => {
+  const usePathname = () => {
+    const location = useLocation();
+    return location.pathname
+  }
+  const path = usePathname() 
+  const handleNavigateCatalog = () => {
+    if (path !== "/products")
+    return navigate('products')
+  }
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchValue, setSearchValue] = useState(() => {
@@ -43,6 +54,7 @@ export const Search = () => {
       placeholder="Поиск"
       value={searchValue}
       type = 'search'
+      onClick={() => handleNavigateCatalog()}
       onChange={(event) => handleChange(event)}
     />
   </>
