@@ -14,6 +14,7 @@ export const ProductForm = ({ token, closeModal }) => {
     stock: Yup.number().positive().required('Обязательное поле'),
     pictures: Yup.string().url().required('Обязательное поле'),
     wight: Yup.string().required('Обязательное поле'),
+    tags: Yup.string().required('Обязательное поле'),
   });
 
   const initialValues = {
@@ -138,6 +139,7 @@ export const ProductForm = ({ token, closeModal }) => {
             type="text"
             className={styles['field']}
           />
+          <ErrorMessage name='tags' component='p' className='warning' />
         </div>
 
 

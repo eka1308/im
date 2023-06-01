@@ -7,7 +7,7 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import  { faTableList } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { cleanUser } from "../../redux/slices/userSlice";
 import { Search } from '../../components/Search'
@@ -50,7 +50,6 @@ export const Header = () => {
           <div className={styles["ico"]}>
             <FontAwesomeIcon icon={faTableList} onClick={() => navigate('/products')} />
             <FontAwesomeIcon icon={faCartShopping} />
-            
             {token ? <>
             <div className={styles["ico-text"]} onClick={() => setAddProductModal(true)}><FontAwesomeIcon icon={faPlus} size="xl" /> </div>
             <FontAwesomeIcon icon={faUser} onClick={() => navigate('/userme')} />

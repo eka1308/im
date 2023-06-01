@@ -11,8 +11,6 @@ export const Userme = () => {
   const group = user.group;
   const navigate = useNavigate();
   
-
-
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['getUserMe'],
     queryFn: async () => {

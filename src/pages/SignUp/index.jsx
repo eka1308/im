@@ -3,7 +3,6 @@ import { Formik, Field, Form, ErrorMessage  } from 'formik';
 import { signUpFetch } from '../../api/user';
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react';
-import { TOKEN } from '../../utils/constants'
 import * as Yup from 'yup';
 import { useState } from 'react';
 import { useMutation } from "@tanstack/react-query";

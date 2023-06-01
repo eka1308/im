@@ -7,7 +7,7 @@ export const LinkItem = ({ link }) => {
     <li className={styles["navigationlink"]}>
       <NavLink
         className={({ isActive }) => (isActive ? styles.active : "")}
-        to={link.link}
+        to={link.path}
       >
         {link.name}
       </NavLink>

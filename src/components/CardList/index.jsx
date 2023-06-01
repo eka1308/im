@@ -8,7 +8,6 @@ import { useSelector } from "react-redux"
 
 export const CardList = () => {
 
-  
   const { token } = useAuth()
   const { search } = useSelector(state => state.filter)
 

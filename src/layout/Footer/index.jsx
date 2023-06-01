@@ -9,15 +9,15 @@ import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { LinkItem  } from "../../components/LinkItem";
 
 const links = 
-[{name: 'Каталог', link:'/products'}, 
-{name: 'Личный кабинет', link:'/userme'},
-{name: 'Регистрация', link:'/signup'}, 
-{name: 'Популярные товары', link:'/favorites'}, 
-{name: 'Новости', link:'/news'}, 
-{name: 'Отзывы', link:'/revews'}, 
-{name: 'Часто спрашивают', link:'/questions'}, 
-{name: 'Контакты', link:'/contacts'}, 
-{name: 'Оплата и доставка', link:'/delivery'}];
+[{name: 'Каталог', path:'/products'}, 
+{name: 'Личный кабинет', path:'/userme'},
+{name: 'Регистрация', path:'/signup'}, 
+{name: 'Популярные товары', path:'/favorites'}, 
+{name: 'Новости', path:'/news'}, 
+{name: 'Отзывы', path:'/revews'}, 
+{name: 'Часто спрашивают', path:'/questions'}, 
+{name: 'Контакты', path:'/contacts'}, 
+{name: 'Оплата и доставка', path:'/delivery'}];
 
 export const Footer = () => {
   // const navigate = useNavigate(); это на будущее, еще добавятся ссылки
@@ -37,8 +37,6 @@ export const Footer = () => {
               <FontAwesomeIcon icon={faEnvelope} /> mail@gmail.com{" "}
             </div>
           </div>
-
-         
             <ul className={styles["navigation"]}>
 
              {links.map((link, index) => {

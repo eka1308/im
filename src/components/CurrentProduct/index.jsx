@@ -7,31 +7,25 @@ import { faTag } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../hooks/useAuth"
 
 export const CurrentProduct = () => {
+  const { token } = useAuth();
   const navigate = useNavigate();
   const params = useParams();
-  console.log(params.idOfProducts);
-  const { token } = useAuth();
-
-
-
+  
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['getCurrentProduct'],
+    queryKey: ['getCurrentProduct', params, token],
     queryFn: async () => {
       const res = await currentProductFetch(token, params.idOfProducts);
       const responce = await res.json()
-      console.log(responce)
       return responce;
       
-    }
-    // initialData: []
-    // enabled: !!token
+    },
+   
   })
 
   if (isLoading) return <p>Идет загрузка:</p>
 
   if (isError) return <p>Произошла ошибка: {error}</p>
 
- console.log(data.reviews)
 
   return (
     <div className={styles["wrapper"]}>
